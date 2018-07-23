@@ -1,0 +1,95 @@
+<!-- Main Content Wrapper Start -->
+<div class="main-content-wrapper d-flex clearfix">
+
+    <!-- Mobile Nav (max width 767px)-->
+    <div class="mobile-nav">
+        <!-- Navbar Brand -->
+        <div class="amado-navbar-brand">
+            <a href="index.html">
+                <img src="assets/img/core-img/logo.png" alt="">
+            </a>
+        </div>
+        <!-- Navbar Toggler -->
+        <div class="amado-navbar-toggler">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Header Area Start -->
+    <header class="header-area clearfix">
+        <!-- Close Icon -->
+        <div class="nav-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <!-- Logo -->
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/img/core-img/logo.png" alt="">
+            </a>
+        </div>
+        <!-- Amado Nav -->
+        <nav class="amado-nav">
+            <ul>
+                <li class="active">
+                    <a routerLink="/home">Home</a>
+                </li>
+                <li>
+                    <a routerLink="/shop">Shop</a>
+                </li>
+                <li>
+                    <a routerLink="/cart">Cart</a>
+                </li>
+                <li>
+                    <a routerLink="/contactUs">Contact Us</a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+    <!-- Header Area End -->
+
+    <!--ContactUs Form -->
+    <div class="col-sm-6 col-xs-12 col-lg-6" id="contactUsForm">
+        <p id="contactUsText">Contact Us</p>
+        <img id="avatar" src="assets/img/core-img/avatar.jpg" />
+
+
+        <form ngNativeValidate data-toggle="validator" #userForm="ngForm" (ngSubmit)="setUserDetails()" role="form" id="contactForm">
+
+            <div class="form-group">
+                <label for="Name" class="control-label">Name</label>
+                <input type="text" class="form-control" id="Name" placeholder="Enter name" name="Name" [(ngModel)]='contactUs.name' required>
+            </div>
+
+            <div class="form-group form-field">
+                <label for="Email" class="control-label form-field">Email address</label>
+                <input type="email" class="form-control " id="Email" placeholder="Enter email" name="Email" [(ngModel)]='contactUs.email'
+                    data-error="Please, enter a valid email-id." >
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <div class="help-block with-errors form-field"></div>
+            </div>
+
+            <div class="form-group ">
+                <label for="Review">Review</label>
+                <textarea class="form-control " id="review" rows="3" name="Review" placeholder="Write to us.." [(ngModel)]='contactUs.review'></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary  pull-right" [disabled]="!userForm.form.valid" #userFrom.reset()>Submit</button>
+        </form>
+
+        <div class="formSuccess">
+            <p>ThankYou for your review!</p>
+        </div>
+
+        <div class="formFail">
+            <p>Please try again later.</p>
+        </div>
+
+    </div>
+    <!--ContactUs Form End-->
+
+
+</div>
+<!-- Main Content Wrapper End -->

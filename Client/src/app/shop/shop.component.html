@@ -1,0 +1,327 @@
+<body>
+
+    <!-- Main Content Wrapper Start -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+        <!-- Mobile Nav (max width 767px)-->
+        <div class="mobile-nav">
+            <!-- Navbar Brand -->
+            <div class="amado-navbar-brand">
+                <a routerLink="/home">
+                    <img src="assets/img/core-img/logo.png" alt="">
+                </a>
+            </div>
+            <!-- Navbar Toggler -->
+            <div class="amado-navbar-toggler">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Header Area Start -->
+        <header class="header-area clearfix">
+            <!-- Close Icon -->
+            <div class="nav-close">
+                <i class="fa fa-close" aria-hidden="true"></i>
+            </div>
+            <!-- Logo -->
+            <div class="logo">
+                <a routerLink="/home">
+                    <img src="assets/img/core-img/logo.png" alt="">
+                </a>
+            </div>
+            <!-- Amado Nav -->
+            <nav class="amado-nav">
+                <ul>
+                    <li routerLink="/home" class="active">
+                        <a>Home</a>
+                    </li>
+                    <li>
+                        <a routerLink="/shop">Shop</a>
+                    </li>
+                    <li>
+                        <a routerLink="/cart">Cart</a>
+                    </li>
+                    <li>
+                        <a routerLink="/contactUs">Contact Us</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+
+        </header>
+        <!-- Header Area End -->
+
+        <!-- Shop Side Bar -->
+        <div class="shop_sidebar_area">
+
+            <!-- Single Widget -->
+            <div class="widget brands mb-50">
+                <!-- Widget Title -->
+                <h6 class="widget-title mb-30">Manufacturer</h6>
+
+                <!-- Manufacturer Check Box -->
+                <div class="widget-desc" *ngFor="let item of checkBoxList;let i = index">
+                    <!-- Single Form Check -->
+                    <div class="form-check" style="margin-bottom:10px">
+                        <input class="form-check-input" type="checkbox" [value]="item" (change)="filterData()">
+                        <label class="form-check-label" for="checkbox1">{{item}}</label>
+                    </div>
+
+                </div>
+                <!-- Manufacturer Check Box End-->
+            </div>
+
+            <!-- Single Widget-->
+
+            <!-- Price Slider -->
+            <div class="filter-col1 p-r-15 p-b-27">
+                <div class="mtext-102 cl2 p-b-15" style="text-decoration:underline;">
+                    Price
+                </div>
+                <input type="range" name="price" id="price" [value]="priceUpperRange" [(ngModel)]="priceUpperRange" min=0 max="500" (change)="filterData()">
+                <div class="mtext-106 cl2" style="text-align:right;margin-right:20px">
+                    {{priceUpperRange}}
+                </div>
+            </div>
+            <!-- Price Slider End-->
+
+            <!-- Rate Slider -->
+            <div class="filter-col1 p-r-15 p-b-27" style="margin-top:50px;margin-bottom:20px">
+                <div class="mtext-102 cl2 p-b-15" style="text-decoration:underline;">
+                    Rate
+                </div>
+                <input type="range" name="rate" id="rate" [value]="rateUpperRange" [(ngModel)]="rateUpperRange" min=0 max="5" (change)="filterData()">
+                <div class="mtext-106 cl2" style="text-align:right;margin-right:20px">
+                    {{rateUpperRange}}
+                </div>
+            </div>
+            <!-- Rate Slider End-->
+
+        </div>
+        <!-- Shop Side Bar End-->
+
+        <div class="amado_product_area section-padding-100">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="product-topbar d-xl-flex align-items-end justify-content-between">
+                            <!-- Total Products -->
+                            <div class="total-products">
+                                <p>Showing {{p*6-5}}-{{p*6}} of {{toysList.length}}</p>
+                                <div class="view d-flex">
+                                    <a id="gridView">
+                                        <i class="fa fa-th-large" aria-hidden="true"></i>
+                                    </a>
+                                    <a id="listView">
+                                        <i class="fa fa-bars" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="sortButtons d-flex align-items-center mr-15">
+                                <!-- sort drop down-->
+                                <div class="dropdown" style="margin-right:2px">
+                                    <button class="btn btn-warning dropdown-toggle " type="button" data-toggle="dropdown">Sort-By
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li (click)="sortByPrice()">
+                                            <a>Price</a>
+                                        </li>
+                                        <li (click)="sortByRate()">
+                                            <a>Rate</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- sort drop down-->
+                                <button type="button" class="btn btn " routerLink="/cart">
+                                    <img src="assets/img/core-img/cart.png" />
+                                    <span class="badge">{{cartSize}}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--GridContainer -->
+                <div class="container" id="gridContainer">
+
+                    <div class="row">
+
+                        <!-- Single Product Area -->
+                        <div class="col-12 col-sm-6 col-md-12 col-xl-6" *ngFor="let toy of toysList| paginate:{ itemsPerPage:6, currentPage:p};let i=index">
+                            <div class="single-product-wrapper gridCard">
+                                <!-- Product Image -->
+                                <div class="product-img" (click)="getToyById(toy.uniq_id,arrayOfRandom[i])">
+                                    <img src="assets/img/product-img/toylist{{arrayOfRandom[i]}}.jpg">
+                                    <!-- Hover Thumb -->
+                                    <img class="hover-img" src="assets/img/product-img/toylist_alt{{arrayOfRandom[i]}}.jpg">
+                                </div>
+
+                                <!-- Product Description -->
+                                <div class="product-description d-flex align-items-center justify-content-between gridCardDescription">
+                                    <!-- Product Meta Data -->
+                                    <div class="product-meta-data" (click)="getToyById(toy.uniq_id,arrayOfRandom[i])">
+                                        <div class="line"></div>
+                                        <p class="product-price">${{toy.price}}</p>
+                                        <h6>{{toy.product_name.split(" ")[0]}}</h6>
+                                    </div>
+                                    <!-- Ratings & Cart -->
+                                    <div class="ratings-cart text-right">
+                                        <div class="ratings" id="rating5" *ngIf="toy.average_review_rating==5">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </div>
+
+                                        <div class="ratings" id="rating4-5" *ngIf="toy.average_review_rating>=4 && toy.average_review_rating<5">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </div>
+
+                                        <div class="ratings" id="rating3-4" *ngIf="toy.average_review_rating>=3 && toy.average_review_rating<4">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </div>
+
+                                        <div class="ratings" id="rating2-3" *ngIf="toy.average_review_rating>=2 && toy.average_review_rating<3">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </div>
+
+                                        <div class="ratings" id="rating1-2" *ngIf="toy.average_review_rating>=1 && toy.average_review_rating<2">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </div>
+
+                                        <div class="ratings" id="rating0-1" *ngIf="toy.average_review_rating>=0 && toy.average_review_rating<1">
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </div>
+
+                                        <div class="cart">
+                                            <a (click)="addToCart(toy.uniq_id,arrayOfRandom[i])" data-toggle="tooltip" data-placement="left" title="Add to Cart">
+                                                <img src="assets/img/core-img/cart.png" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--GridContainer -->
+
+                <!--ListContainer -->
+                <div class="container" id="listContainer">
+                    <div class="row listCard" style="margin-top: 15px" div *ngFor="let toy of toysList| paginate:{ itemsPerPage:6, currentPage:p};let i=index">
+                        <div class="product-img col-md-4" (click)="getToyById(toy.uniq_id,arrayOfRandom[i])">
+                            <img src="assets/img/product-img/toylist{{arrayOfRandom[i]}}.jpg" alt="">
+                        </div>
+
+                        <div class="product-description d-flex align-items-center justify-content-between col-md-8 listCardDescription">
+                            <!-- Product Meta Data -->
+                            <div class="product-meta-data" (click)="getToyById(toy.uniq_id,arrayOfRandom[i])">
+                                <div class="line"></div>
+                                <p class="product-price">${{toy.price}}</p>
+                                <h6>{{toy.product_name.split(" ")[0]}}</h6>
+
+                            </div>
+
+                            <!-- Ratings & Cart -->
+                            <div class="ratings-cart text-right " style="color:#fbb710">
+
+                                <div class="ratings" id="rating5" *ngIf="toy.average_review_rating==5">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+
+                                <div class="ratings" id="rating4-5" *ngIf="toy.average_review_rating>=4 && toy.average_review_rating<5">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </div>
+
+                                <div class="ratings" id="rating3-4" *ngIf="toy.average_review_rating>=3 && toy.average_review_rating<4">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </div>
+
+                                <div class="ratings" id="rating2-3" *ngIf="toy.average_review_rating>=2 && toy.average_review_rating<3">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </div>
+
+                                <div class="ratings" id="rating1-2" *ngIf="toy.average_review_rating>=1 && toy.average_review_rating<2">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </div>
+
+                                <div class="ratings" id="rating0-1" *ngIf="toy.average_review_rating>=0 && toy.average_review_rating<1">
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </div>
+
+                                <div class="cart">
+                                    <a (click)="addToCart(toy.uniq_id,arrayOfRandom[i])" data-toggle="tooltip" data-placement="left" title="Add to Cart">
+                                        <img src="assets/img/core-img/cart.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <!-- ListContainer  -->
+
+
+                <div class="paginator">
+                    <pagination-controls (click)="resetRandomArray()" (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content Wrapper End -->

@@ -1,0 +1,213 @@
+<body>
+
+    <!-- Main Content Wrapper Start -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+        <!-- Mobile Nav (max width 767px)-->
+        <div class="mobile-nav">
+            <!-- Navbar Brand -->
+            <div class="amado-navbar-brand">
+                <a routerLink="/home">
+                    <img src="assets/img/core-img/logo.png" alt="">
+                </a>
+            </div>
+            <!-- Navbar Toggler -->
+            <div class="amado-navbar-toggler">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Header Area Start -->
+        <header class="header-area clearfix">
+            <!-- Close Icon -->
+            <div class="nav-close">
+                <i class="fa fa-close" aria-hidden="true"></i>
+            </div>
+            <!-- Logo -->
+            <div class="logo">
+                <a routerLink="/home">
+                    <img src="assets/img/core-img/logo.png" alt="">
+                </a>
+            </div>
+            <!-- Amado Nav -->
+            <nav class="amado-nav">
+                <ul>
+                    <li class="active">
+                        <a routerLink="/home">Home</a>
+                    </li>
+                    <li>
+                        <a routerLink="/shop">Shop</a>
+                    </li>
+                    <li>
+                        <a routerLink="/cart">Cart</a>
+                    </li>
+                    <li>
+                        <a routerLink="/contactUs">Contact Us</a>
+                    </li>
+                </ul>
+            </nav>
+
+
+
+        </header>
+        <!-- Header Area End -->
+
+        <!-- Product Details Area Start -->
+        <div class="single-product-area section-padding-100 clearfix">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mt-50">
+                                <li class="breadcrumb-item">{{eachToy[0].amazon_category_and_sub_category}}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-lg-7">
+                        <div class="single_product_thumb">
+                            <div id="product_details_slider" class="carousel slide" data-ride="carousel">
+                                <dl class="carousel-indicators">
+                                    <dd class="active" data-target="#product_details_slider" data-slide-to="0">
+                                        <img src="assets/img/product-img/toylist{{productImageIndex}}.jpg" />
+                                    </dd>
+                                    <dd data-target="#product_details_slider" data-slide-to="1">
+                                        <img src="assets/img/product-img/toylist{{productImageIndex+1}}.jpg" />
+                                    </dd>
+                                    <dd data-target="#product_details_slider" data-slide-to="2">
+                                        <img src="assets/img/product-img/toylist{{productImageIndex+2}}.jpg" />
+                                    </dd>
+                                    <dd data-target="#product_details_slider" data-slide-to="3">
+                                        <img src="assets/img/product-img/toylist{{productImageIndex+3}}.jpg" />
+                                    </dd>
+                                </dl>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <a class="gallery_img">
+                                            <img class="d-block w-100" src="assets/img/product-img/toylist{{productImageIndex}}.jpg" alt="First slide">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a class="gallery_img">
+                                            <img class="d-block w-100" src="assets/img/product-img/toylist{{productImageIndex+1}}.jpg" alt="Second slide">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a class="gallery_img">
+                                            <img class="d-block w-100" src="assets/img/product-img/toylist{{productImageIndex+2}}.jpg" alt="Third slide">
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a class="gallery_img">
+                                            <img class="d-block w-100" src="assets/img/product-img/toylist{{productImageIndex+3}}.jpg" alt="Fourth slide">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-5">
+                        <div class="single_product_desc">
+                            <!-- Product Meta Data -->
+                            <div class="product-meta-data">
+                                <div class="line"></div>
+                                <p class="product-price">${{eachToy[0].price}}</p>
+
+                                <h6>{{eachToy[0].product_name.split(" ")[0]}}</h6>
+
+                                <!-- Ratings & Review -->
+                                <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
+
+
+                                    <div class="ratings" id="rating4-5" *ngIf="eachToy[0].average_review_rating>4 && eachToy[0].average_review_rating<5">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </div>
+
+                                    <div class="ratings" id="rating3-4" *ngIf="eachToy[0].average_review_rating>3 && eachToy[0].average_review_rating<=4">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </div>
+
+                                    <div class="ratings" id="rating2-3" *ngIf="eachToy[0].average_review_rating>2 && eachToy[0].average_review_rating<=3">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </div>
+
+                                    <div class="ratings" id="rating1-2" *ngIf="eachToy[0].average_review_rating>1 && eachToy[0].average_review_rating<=2">
+
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </div>
+
+                                    <div class="ratings" id="rating0-1" *ngIf="eachToy[0].average_review_rating>0 && eachToy[0].average_review_rating<=1">
+
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </div>
+
+                                    <div class="review">
+                                        <a>{{eachToy[0].manufacturer.split(" ")[0]}}</a>
+
+                                    </div>
+                                </div>
+                                <!-- Ratings & Review End -->
+
+                                <!-- Avaiable -->
+                                <p class="avaibility">
+                                    <i class="fa fa-circle"></i> In Stock {{eachToy[0].number_available_in_stock}}</p>
+                            </div>
+
+                            <div class="short_overview my-5">
+                                <p>{{eachToy[0].description}}</p>
+                            </div>
+
+                            <!-- Add to Cart Form -->
+                            <form class="cart clearfix" method="post">
+                                <div class="cart-btn d-flex mb-50">
+                                    <p>Qty</p>
+                                    <div class="quantity">
+                                        <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) ) effect.value--;return false;">
+                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                        </span>
+                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
+                                        <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;">
+                                            <i class="fa fa-caret-up" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
+                            </form>
+                            <!-- Add to Cart Form End-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product Details Area End -->
+    </div>
+    <!-- Main Content Wrapper End -->
+</body>

@@ -1,0 +1,18 @@
+.formSuccess {
+    visibility: hidden;
+    color: teal;
+}
+
+.formSuccess p{
+    color: teal;
+    font-weight: bold;
+}
+
+.formFail{
+    visibility: hidden;
+}
+
+.formFail p{
+    color: tomato;
+    font-weight: bold;
+}
